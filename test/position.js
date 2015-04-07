@@ -1,4 +1,4 @@
-import dom from '../bower_components/metaljs/src/dom/dom';
+import dom from 'metaljs/src/dom/dom';
 import position from '../src/position';
 
 describe('position', function() {

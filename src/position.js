@@ -1,4 +1,4 @@
-import core from '../bower_components/metaljs/src/core';
+import core from 'metaljs/src/core';
 import math from './math';
 
 /**
