@@ -6,5 +6,5 @@ addons:
 script: gulp test:saucelabs
 env:
   global:
-  - secure:
-  - secure:
+  - secure: vZdBNfnE/rO7Xwk1mBLY5RiFvoDSQj35Yqf8aMEYQkxnsErxiK2xMPA8oHKF2PSmFFFr4WQWXICVo1mxqiqVahtD2FPGfec5eMl+kxrRqjFaz09hgfWd2ui6GTxSowy28w22yvWaB3xRS6r7vifInp7rwYGAMXdmPalQWDf4Oto=
+  - secure: I2zy8hmaBZpj+rL/rFZXg/3SjxDGGpOjFTIRmodSqDRrvjp47Vjlm6wPST2QWZtIB8DLDNdL7yKnupJY9wAJQKhfZ9rzQiL6dOE5LaBNZm8Jxd4R9j15m3cH+58uoYoaFVmMGuirzQ2TmdJMUHzFcxFBzYaBBNxyYGd3nr576QY=
