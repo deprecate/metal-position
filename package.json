@@ -1,0 +1,37 @@
+{
+  "name": "metal-position",
+  "version": "0.0.0",
+  "description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "metal",
+    "metaljs"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/eduardolundgren/metal-position.git"
+  },
+  "dependencies": {
+    "metaljs": "liferay/metal"
+  },
+  "devDependencies": {
+    "babel": "^4.7.3",
+    "browserify": "^9.0.3",
+    "browserify-istanbul": "^0.2.0",
+    "chai": "^2.2.0",
+    "gulp": "^3.8.11",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.1.0",
+    "isparta": "^2.2.0",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-coverage": "eduardolundgren/karma-coverage#next",
+    "karma-mocha": "^0.1.10",
+    "mocha": "^2.2.1",
+    "run-sequence": "^1.0.2"
+  }
+}
