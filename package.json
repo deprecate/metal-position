@@ -31,6 +31,7 @@
     "karma-chrome-launcher": "^0.1.7",
     "karma-coverage": "eduardolundgren/karma-coverage#next",
     "karma-mocha": "^0.1.10",
+    "karma-sauce-launcher": "^0.2.10",
     "mocha": "^2.2.1",
     "run-sequence": "^1.0.2"
   }
