@@ -2,7 +2,7 @@
 
 [![Dependency Status](http://img.shields.io/david/eduardolundgren/metal-position.svg?style=flat)](https://david-dm.org/eduardolundgren/metal-position)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/metal-position.svg)](https://saucelabs.com/u/metal-position)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/metalposition.svg)](https://saucelabs.com/u/metalposition)
 
 > A [Metal.js](https://github.com/liferay/metal) extension that provides static utilities for browser positioning.
 

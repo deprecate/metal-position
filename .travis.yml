@@ -1,7 +1,7 @@
 language: node_js
 before_script:
-  - npm install -g bower
-  - bower inst
+- npm install -g bower
+- bower inst
 node_js:
 - '0.12'
 addons:
@@ -9,5 +9,5 @@ addons:
 script: gulp test:saucelabs
 env:
   global:
-  - secure: vZdBNfnE/rO7Xwk1mBLY5RiFvoDSQj35Yqf8aMEYQkxnsErxiK2xMPA8oHKF2PSmFFFr4WQWXICVo1mxqiqVahtD2FPGfec5eMl+kxrRqjFaz09hgfWd2ui6GTxSowy28w22yvWaB3xRS6r7vifInp7rwYGAMXdmPalQWDf4Oto=
-  - secure: I2zy8hmaBZpj+rL/rFZXg/3SjxDGGpOjFTIRmodSqDRrvjp47Vjlm6wPST2QWZtIB8DLDNdL7yKnupJY9wAJQKhfZ9rzQiL6dOE5LaBNZm8Jxd4R9j15m3cH+58uoYoaFVmMGuirzQ2TmdJMUHzFcxFBzYaBBNxyYGd3nr576QY=
+  - secure: uQD+zb7GPdXlVPzWCSL92ukIPH+osqmxM1/UsF+eCQ4vQX+mG3gwexrX8gs62zQ4Klqt9vMT3RMzgx7vo78ehR7RVHdJjFhHfCeGFYtO79YQbhZdsrIUYpitg/hEe809tKPjlv1MvQz9QHnBggCEknXUr1QeYPn1KS8lJDYzYw4=
+  - secure: a4TKob8MpCJCN5Ytqf2OcY9cYjE1kjnX7cmMAnmxHHZGeY13VK0dny+yA3d3C7n2FsbM5BUVAbH9gaotaebiyo/FwhJJZJD1WW3rIONiOKsceb0uMiuB3EUz8V78+z2j9qJwgfRUN0CjU7cABKpJUDY4yWqJhOu1giNZPyhFCSI=
