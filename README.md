@@ -1,6 +1,6 @@
 # Metal.js Position
 
-[![Build Status](http://img.shields.io/travis/liferay/metal-position/master.svg?style=flat)](https://travis-ci.org/liferay/metal-position)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/metal-position.svg)](https://travis-ci.org/eduardolundgren/metal-position)
 [![Dependency Status](http://img.shields.io/david/liferay/metal-position.svg?style=flat)](https://david-dm.org/liferay/metal-position)
 [![NPM version](http://img.shields.io/npm/v/metal-position.svg?style=flat)](http://npmjs.org/metal-position)
 [![NPM downloads](http://img.shields.io/npm/dm/metal-position.svg?style=flat)](http://npmjs.org/metal-position)
