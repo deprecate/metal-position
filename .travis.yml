@@ -1,4 +1,7 @@
 language: node_js
+before_script:
+  - npm install -g bower
+  - bower inst
 node_js:
 - '0.12'
 addons:
