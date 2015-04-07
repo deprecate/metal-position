@@ -1,6 +1,4 @@
-# Metal.js Position
-
-[![Dependency Status](http://img.shields.io/david/eduardolundgren/metal-position.svg?style=flat)](https://david-dm.org/eduardolundgren/metal-position)
+# Metal.js Position [![Dependency Status](http://img.shields.io/david/eduardolundgren/metal-position.svg?style=flat)](https://david-dm.org/eduardolundgren/metal-position)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/metalposition.svg)](https://saucelabs.com/u/metalposition)
 
