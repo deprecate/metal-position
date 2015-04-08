@@ -8,10 +8,8 @@
     "metaljs"
   ],
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test"
+    "*",
+    "!src/**/*"
   ],
   "dependencies": {
     "metaljs": "liferay/metal"
