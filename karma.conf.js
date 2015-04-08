@@ -1,40 +1,42 @@
 var isparta = require('isparta');
 var istanbul = require('browserify-istanbul');
+var metaljs = require('metaljs');
+var renamer = require('browserify-imports-renamer');
 
 module.exports = function (config) {
-	config.set({
-		frameworks: ['mocha', 'chai', 'browserify'],
+  config.set({
+    frameworks: ['mocha', 'chai', 'browserify'],
 
-		files: [
-			'node_modules/metaljs/node_modules/closure-templates/soyutils.js',
-			'src/**/*.js',
-			'test/**/*.js'
-		],
+    files: [
+      'node_modules/closure-templates/soyutils.js',
+      'src/**/*.js',
+      'test/**/*.js'
+    ],
 
-		preprocessors: {
-			'src/**/*.js': ['browserify'],
-			'test/**/*.js': ['browserify']
-		},
+    preprocessors: {
+      'src/**/*.js': ['browserify'],
+      'test/**/*.js': ['browserify']
+    },
 
-		browserify: {
-			transform: [istanbul({
-				defaultIgnore: false,
-				instrumenter: isparta
-			})],
-			debug: true
-		},
+    browserify: {
+      transform: [renamer({renameFn: metaljs.renameAlias}), istanbul({
+        defaultIgnore: false,
+        instrumenter: isparta
+      })],
+      debug: true
+    },
 
-		browsers: ['Chrome'],
+    browsers: ['Chrome'],
 
-		reporters: ['coverage', 'progress'],
+    reporters: ['coverage', 'progress'],
 
-		coverageReporter: {
-			ignore: ['**/bower_components/**', '**/test/**', '**/*.soy.js'],
-			reporters: [
-				{type: 'text-summary'},
-				{type: 'html'},
-				{ type: 'lcov', subdir: 'lcov' }
-			]
-		}
-	});
+    coverageReporter: {
+      ignore: ['**/bower_components/**', '**/test/**', '**/*.soy.js'],
+      reporters: [
+        {type: 'text-summary'},
+        {type: 'html'},
+        { type: 'lcov', subdir: 'lcov' }
+      ]
+    }
+  });
 };
