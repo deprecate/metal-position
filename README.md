@@ -2,7 +2,7 @@
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/metalposition.svg)](https://saucelabs.com/u/metalposition)
 
-> A [Metal.js](https://github.com/liferay/metal) extension that provides static utilities for browser positioning.
+> A [Metal.js](https://github.com/liferay/metal.js) extension that provides static utilities for browser positioning.
 
 ## Install
 
@@ -21,7 +21,7 @@ import position from 'bower_components/metal-position/src/position';
 position.getClientHeight();
 ```
 
-Note that Metal Position is written in [ES6](https://babeljs.io/docs/learn-es6/) (a.k.a ECMAScript 2015), so you can also use ES6 on your code like we did on the example. Since ES6 isn't fully implemented on browsers yet though, either a polyfill or a build process is necessary before using Metal on a website. See the [Metal.js](https://github.com/liferay/metal) documentation for more details.
+Note that Metal Position is written in [ES6](https://babeljs.io/docs/learn-es6/) (a.k.a ECMAScript 2015), so you can also use ES6 on your code like we did on the example. Since ES6 isn't fully implemented on browsers yet though, either a polyfill or a build process is necessary before using Metal on a website. See the [Metal.js](https://github.com/liferay/metal.js) documentation for more details.
 
 
 There are few different utilities available:
