@@ -1,41 +1,42 @@
 var isparta = require('isparta');
-var istanbul = require('browserify-istanbul');
 var metaljs = require('metaljs');
-var renamer = require('browserify-imports-renamer');
+
+var babelOptions = {
+  resolveModuleSource: metaljs.renameAlias,
+  sourceMap: 'both'
+};
 
 module.exports = function (config) {
   config.set({
-    frameworks: ['mocha', 'chai', 'browserify'],
+    frameworks: ['mocha', 'chai', 'source-map-support', 'commonjs'],
 
     files: [
       'node_modules/closure-templates/soyutils.js',
+      'bower_components/**/*.js',
       'src/**/*.js',
       'test/**/*.js'
     ],
 
     preprocessors: {
-      'src/**/*.js': ['browserify'],
-      'test/**/*.js': ['browserify']
-    },
-
-    browserify: {
-      transform: [renamer({renameFn: metaljs.renameAlias}), istanbul({
-        defaultIgnore: false,
-        instrumenter: isparta
-      })],
-      debug: true
+      'src/**/*.js': ['coverage', 'commonjs'],
+      'bower_components/**/*.js': ['babel', 'commonjs'],
+      'test/**/*.js': ['babel', 'commonjs']
     },
 
     browsers: ['Chrome'],
 
     reporters: ['coverage', 'progress'],
 
+    babelPreprocessor: {options: babelOptions},
+
     coverageReporter: {
-      ignore: ['**/bower_components/**', '**/test/**', '**/*.soy.js'],
+      instrumenters: {isparta : isparta},
+      instrumenter: {'**/*.js': 'isparta'},
+      instrumenterOptions: {isparta: {babel: babelOptions}},
       reporters: [
-        {type: 'text-summary'},
         {type: 'html'},
-        { type: 'lcov', subdir: 'lcov' }
+        {type: 'lcov', subdir: 'lcov'},
+        {type: 'text-summary'}
       ]
     }
   });
