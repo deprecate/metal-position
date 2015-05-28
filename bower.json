@@ -12,6 +12,6 @@
     "!src/**/*"
   ],
   "dependencies": {
-    "metaljs": "liferay/metal"
+    "metaljs": "liferay/metal#master"
   }
 }
