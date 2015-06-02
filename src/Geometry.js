@@ -1,4 +1,4 @@
-class math {
+class Geometry {
   /**
      * Tests if a rectangle intersects with another.
      *
@@ -32,4 +32,4 @@ class math {
     }
 }
 
-export default math;
+export default Geometry;

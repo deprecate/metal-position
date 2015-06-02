@@ -1,10 +1,10 @@
 import core from 'bower:metaljs/src/core';
-import math from './math';
+import Geometry from './Geometry';
 
 /**
  * Class with static methods responsible for doing browser position checks.
  */
-class position {
+class Position {
   /**
    * Gets the client height of the specified node. Scroll height is not
    * included.
@@ -148,7 +148,7 @@ class position {
    * @return {boolean}
    */
   static intersectRegion(r1, r2) {
-    return math.intersectRect(
+    return Geometry.intersectRect(
       r1.top, r1.left, r1.bottom, r1.right,
       r2.top, r2.left, r2.bottom, r2.right);
   }
@@ -227,4 +227,4 @@ class position {
   }
 }
 
-export default position;
+export default Position;
