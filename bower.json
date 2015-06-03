@@ -4,14 +4,13 @@
   "main": "src/position.js",
   "description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
   "keywords": [
-    "metal",
-    "metaljs"
+    "metal"
   ],
   "ignore": [
     "*",
     "!src/**/*"
   ],
   "dependencies": {
-    "metaljs": "liferay/metal#master"
+    "metal": "metal/metal.js#master"
   }
 }

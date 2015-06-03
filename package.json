@@ -6,15 +6,14 @@
     "test": "gulp test"
   },
   "keywords": [
-    "metal",
-    "metaljs"
+    "metal"
   ],
   "repository": {
     "type": "git",
-    "url": "http://github.com/eduardolundgren/metal-position.git"
+    "url": "http://github.com/metal/metal-position.git"
   },
   "dependencies": {
-    "metaljs": "liferay/metal"
+    "metal": "metal/metal.js#master"
   },
   "devDependencies": {
     "babel": "^4.7.3",

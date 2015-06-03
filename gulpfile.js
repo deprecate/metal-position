@@ -3,7 +3,7 @@ var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var runSequence = require('run-sequence');
 
-require('metaljs')({
+require('metal')({
   bundleFileName: 'position.js'
 });
 

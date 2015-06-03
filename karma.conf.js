@@ -1,8 +1,8 @@
 var isparta = require('isparta');
-var metaljs = require('metaljs');
+var metal = require('metal');
 
 var babelOptions = {
-  resolveModuleSource: metaljs.renameAlias,
+  resolveModuleSource: metal.renameAlias,
   sourceMap: 'both'
 };
 
