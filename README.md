@@ -1,4 +1,4 @@
-# Metal.js Position [![Dependency Status](http://img.shields.io/david/eduardolundgren/metal-position.svg?style=flat)](https://david-dm.org/eduardolundgren/metal-position)
+# Metal.js Position [![Dependency Status](http://img.shields.io/david/metal/metal-position.svg?style=flat)](https://david-dm.org/metal/metal-position)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/metalposition.svg)](https://saucelabs.com/u/metalposition)
 
@@ -165,7 +165,7 @@ gulp test:watch
 
 ## History
 
-For detailed changelog, see [Releases](https://github.com/eduardolundgren/metal-position/releases).
+For detailed changelog, see [Releases](https://github.com/metal/metal-position/releases).
 
 ## License
 
