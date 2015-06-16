@@ -13,7 +13,7 @@
     "url": "http://github.com/metal/metal-position.git"
   },
   "dependencies": {
-    "metal": "metal/metal.js#master"
+    "gulp-metal": "metal/gulp-metal#master"
   },
   "devDependencies": {
     "babel": "^4.7.3",

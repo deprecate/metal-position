@@ -2,8 +2,9 @@ var gulp = require('gulp');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var runSequence = require('run-sequence');
+var metal = require('gulp-metal');
 
-require('metal')({
+metal.registerTasks({
   bundleFileName: 'position.js'
 });
 

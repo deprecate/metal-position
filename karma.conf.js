@@ -1,5 +1,5 @@
 var isparta = require('isparta');
-var metal = require('metal');
+var metal = require('gulp-metal');
 
 var babelOptions = {
   resolveModuleSource: metal.renameAlias,
@@ -12,14 +12,14 @@ module.exports = function (config) {
 
     files: [
       'node_modules/closure-templates/soyutils.js',
-      'bower_components/**/*.js',
+      'bower_components/metal/**/*.js',
       'src/**/*.js',
       'test/**/*.js'
     ],
 
     preprocessors: {
       'src/**/*.js': ['coverage', 'commonjs'],
-      'bower_components/**/*.js': ['babel', 'commonjs'],
+      'bower_components/metal/**/*.js': ['babel', 'commonjs'],
       'test/**/*.js': ['babel', 'commonjs']
     },
 
