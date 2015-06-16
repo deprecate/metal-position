@@ -7,25 +7,27 @@ import Align from '../src/Align';
 var element;
 var mutable;
 var center;
+var offsetParent;
 
 describe('Align', function() {
-  after(function() {
+  afterEach(function() {
     dom.exitDocument(element);
     dom.exitDocument(mutable);
     dom.exitDocument(center);
+    dom.exitDocument(offsetParent);
     window.scrollTo(0, 0);
   });
 
-  before(function() {
+  beforeEach(function() {
     dom.enterDocument('<div id="element" style="position:absolute;height: 25px;width:25px;"></div>');
     dom.enterDocument('<div id="center" style="position:absolute;top:100px;left:100px;width:50px;height:50px;"></div>');
     dom.enterDocument('<div id="mutable" style="position:absolute;width:50px;height:50px;"></div>');
+    dom.enterDocument('<div id="offsetParent" style="position:absolute;width:500px;height:500px;top:100px;left:100px;"></div>');
     element = dom.toElement('#element');
     mutable = dom.toElement('#mutable');
     center = dom.toElement('#center');
-  });
+    offsetParent = dom.toElement('#offsetParent');
 
-  beforeEach(function() {
     mutable.style.top = '100px';
     mutable.style.left = '100px';
     mutable.style.bottom = '';
@@ -110,6 +112,14 @@ describe('Align', function() {
     Align.align(element, mutable, Align.Left);
     assert.strictEqual('5020.5px', element.style.top);
     assert.strictEqual('4983px', element.style.left);
+  });
+
+  it('should align respecting parent offset', function() {
+    offsetParent.appendChild(element);
+    offsetParent.appendChild(center);
+    Align.align(element, center, Align.Bottom);
+    assert.strictEqual('150px', element.style.top);
+    assert.strictEqual('112.5px', element.style.left);
   });
 
   it('should check if align position is valid', function() {

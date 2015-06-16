@@ -27,9 +27,14 @@ class Align {
 
     var computedStyle = window.getComputedStyle(element, null);
     if (computedStyle.getPropertyValue('position') !== 'fixed') {
-      var docEl = window.document.documentElement;
-      bestRegion.top += docEl.clientTop + window.pageYOffset;
-      bestRegion.left += docEl.clientLeft + window.pageXOffset;
+      bestRegion.top += window.pageYOffset;
+      bestRegion.left += window.pageXOffset;
+
+      var offsetParent = element;
+      while ((offsetParent = offsetParent.offsetParent)) {
+        bestRegion.top -= offsetParent.offsetTop;
+        bestRegion.left -= offsetParent.offsetLeft;
+      }
     }
 
     element.style.top = bestRegion.top + 'px';
