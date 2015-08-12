@@ -234,7 +234,7 @@ class Position {
    * @return {boolean}
    */
   static pointInsideRegion(x, y, region) {
-    return region.left <= x && x <= region.right && region.top <= y && y <= region.bottom;
+    return Position.insideRegion(region, Position.makeRegion(y, 0, x, x, y, 0));
   }
 }
 
