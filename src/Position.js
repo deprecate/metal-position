@@ -225,6 +225,17 @@ class Position {
   static makeRegionFromBoundingRect_(rect) {
     return this.makeRegion(rect.bottom, rect.height, rect.left, rect.right, rect.top, rect.width);
   }
+
+  /**
+   * Checks if the given point coordinates are inside a region.
+   * @param {number} x
+   * @param {number} y
+   * @param {!Object} region
+   * @return {boolean}
+   */
+  static pointInsideRegion(x, y, region) {
+    return region.left <= x && x <= region.right && region.top <= y && y <= region.bottom;
+  }
 }
 
 export default Position;

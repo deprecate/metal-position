@@ -176,6 +176,17 @@ describe('Position', function() {
       var r2 = { top: 101, left: 101, bottom: 200, right: 200 };
       assert.isNull(Position.intersection(r1, r2));
     });
+
+    it('should check if a point is inside a region', function() {
+      var r = { top: 0, left: 0, bottom: 100, right: 100 };
+      assert.ok(Position.pointInsideRegion(0, 0, r));
+      assert.ok(Position.pointInsideRegion(0, 100, r));
+      assert.ok(Position.pointInsideRegion(100, 0, r));
+      assert.ok(Position.pointInsideRegion(100, 100, r));
+      assert.ok(Position.pointInsideRegion(50, 50, r));
+      assert.ok(!Position.pointInsideRegion(-1, -1, r));
+      assert.ok(!Position.pointInsideRegion(101, 101, r));
+    });
   });
 });
 
