@@ -95,6 +95,56 @@ describe('Position', function() {
       assert.strictEqual(0, region.top);
     });
 
+    it('should get node region excluding the scroll position', function(done) {
+      document.body.style.height = '2000px';
+      document.body.style.width = '2000px';
+      document.body.scrollTop = 20;
+      document.body.scrollLeft = 30;
+
+      dom.once(document, 'scroll', function() {
+        var region = Position.getRegion(paddingElement);
+        assert.strictEqual(10000, region.height);
+        assert.strictEqual(10000, region.width);
+        assert.strictEqual(9970, region.right);
+        assert.strictEqual(9980, region.bottom);
+        assert.strictEqual(-30, region.left);
+        assert.strictEqual(-20, region.top);
+
+        dom.once(document, 'scroll', function() {
+          document.body.style.height = '';
+          document.body.style.width = '';
+          done();
+        });
+        document.body.scrollTop = 0;
+        document.body.scrollLeft = 0;
+      });
+    });
+
+    it('should get node region including the scroll position', function(done) {
+      document.body.style.height = '2000px';
+      document.body.style.width = '2000px';
+      document.body.scrollTop = 20;
+      document.body.scrollLeft = 30;
+
+      dom.once(document, 'scroll', function() {
+        var region = Position.getRegion(paddingElement, true);
+        assert.strictEqual(10000, region.height);
+        assert.strictEqual(10000, region.width);
+        assert.strictEqual(10000, region.right);
+        assert.strictEqual(10000, region.bottom);
+        assert.strictEqual(0, region.left);
+        assert.strictEqual(0, region.top);
+
+        dom.once(document, 'scroll', function() {
+          document.body.style.height = '';
+          document.body.style.width = '';
+          done();
+        });
+        document.body.scrollTop = 0;
+        document.body.scrollLeft = 0;
+      });
+    });
+
     it('should check if same region intersects', function() {
       var r1 = { top: 0, left: 0, bottom: 100, right: 100 };
       var r2 = { top: 0, left: 0, bottom: 100, right: 100 };

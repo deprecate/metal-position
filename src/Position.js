@@ -70,15 +70,18 @@ class Position {
   /**
    * Gets the size of an element and its position relative to the viewport.
    * @param {!Document|Element|Window} node
+   * @param {boolean=} opt_includeScroll Flag indicating if the document scroll
+   *   position should be considered in the element's region coordinates. Defaults
+   *   to false.
    * @return {!DOMRect} The returned value is a DOMRect object which is the
    *     union of the rectangles returned by getClientRects() for the element,
    *     i.e., the CSS border-boxes associated with the element.
    */
-  static getRegion(node) {
+  static getRegion(node, opt_includeScroll) {
     if (core.isDocument(node) || core.isWindow(node)) {
       return this.getDocumentRegion_(node);
     }
-    return this.makeRegionFromBoundingRect_(node.getBoundingClientRect());
+    return this.makeRegionFromBoundingRect_(node.getBoundingClientRect(), opt_includeScroll);
   }
 
   /**
@@ -219,11 +222,23 @@ class Position {
    * @param  {!DOMRect} The returned value is a DOMRect object which is the
    *     union of the rectangles returned by getClientRects() for the element,
    *     i.e., the CSS border-boxes associated with the element.
+   * @param {boolean=} opt_includeScroll Flag indicating if the document scroll
+   *   position should be considered in the element's region coordinates. Defaults
+   *   to false.
    * @return {DOMRect} Writable version of DOMRect.
    * @protected
    */
-  static makeRegionFromBoundingRect_(rect) {
-    return this.makeRegion(rect.bottom, rect.height, rect.left, rect.right, rect.top, rect.width);
+  static makeRegionFromBoundingRect_(rect, opt_includeScroll) {
+    var deltaX = opt_includeScroll ? document.body.scrollLeft : 0;
+    var deltaY = opt_includeScroll ? document.body.scrollTop : 0;
+    return this.makeRegion(
+      rect.bottom + deltaY,
+      rect.height,
+      rect.left + deltaX,
+      rect.right + deltaX,
+      rect.top + deltaY,
+      rect.width
+    );
   }
 
   /**
