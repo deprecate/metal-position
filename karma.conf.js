@@ -1,4 +1,3 @@
-var isparta = require('isparta');
 var metal = require('gulp-metal');
 
 var babelOptions = {
@@ -11,33 +10,20 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai', 'source-map-support', 'commonjs'],
 
     files: [
-      'node_modules/closure-templates/soyutils.js',
-      'bower_components/metal/**/*.js',
+      'bower_components/soyutils/soyutils.js',
+      'bower_components/metal/src/**/*.js',
       'src/**/*.js',
       'test/**/*.js'
     ],
 
     preprocessors: {
-      'src/**/*.js': ['coverage', 'commonjs'],
+      'src/**/*.js': ['babel', 'commonjs'],
       'bower_components/metal/**/*.js': ['babel', 'commonjs'],
       'test/**/*.js': ['babel', 'commonjs']
     },
 
     browsers: ['Chrome'],
 
-    reporters: ['coverage', 'progress'],
-
-    babelPreprocessor: {options: babelOptions},
-
-    coverageReporter: {
-      instrumenters: {isparta : isparta},
-      instrumenter: {'**/*.js': 'isparta'},
-      instrumenterOptions: {isparta: {babel: babelOptions}},
-      reporters: [
-        {type: 'html'},
-        {type: 'lcov', subdir: 'lcov'},
-        {type: 'text-summary'}
-      ]
-    }
+    babelPreprocessor: {options: babelOptions}
   });
-};
+}
