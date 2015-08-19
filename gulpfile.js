@@ -7,20 +7,20 @@ var runSequence = require('run-sequence');
 var metal = require('gulp-metal');
 
 metal.registerTasks({
-  bundleFileName: 'position.js'
+	bundleFileName: 'position.js'
 });
 
 gulp.task('build:min', function() {
-  return gulp.src('build/position.js')
-      .pipe(uglify())
-      .pipe(rename(function (path) {
-        path.basename += '-min';
-      }))
-      .pipe(gulp.dest('build'));
+	return gulp.src('build/position.js')
+		.pipe(uglify())
+		.pipe(rename(function(path) {
+			path.basename += '-min';
+		}))
+		.pipe(gulp.dest('build'));
 });
 
 gulp.task('build', function(cb) {
-  runSequence('build:globals', 'build:min', cb);
+	runSequence('build:globals', 'build:min', cb);
 });
 
 gulp.task('watch', ['watch:globals']);
