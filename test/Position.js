@@ -72,6 +72,23 @@ describe('Position', function() {
 				done();
 			}, paddingElement);
 		});
+
+		it('should get document scrollLeft and scrollTop', function(done) {
+			document.body.style.height = '2000px';
+			document.body.style.width = '2000px';
+			document.body.scrollTop = 20;
+			document.body.scrollLeft = 30;
+			nextScrollTick(function() {
+				assert.strictEqual(20, Position.getScrollTop(document));
+				assert.strictEqual(30, Position.getScrollLeft(document));
+				assert.strictEqual(20, Position.getScrollTop(window));
+				assert.strictEqual(30, Position.getScrollLeft(window));
+
+				document.body.scrollTop = 0;
+				document.body.scrollLeft = 0;
+				nextScrollTick(done);
+			});
+		});
 	});
 
 	describe('Region', function() {
