@@ -12,28 +12,20 @@
     "type": "git",
     "url": "http://github.com/metal/metal-position.git"
   },
-  "dependencies": {
-    "gulp-metal": "metal/gulp-metal#master"
-  },
   "devDependencies": {
-    "babel": "^4.7.3",
     "chai": "^2.2.0",
-    "closure-templates": "^20141017.0.1",
     "gulp": "^3.8.11",
-    "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.1.0",
-    "isparta": "^2.2.0",
+    "gulp-metal": "^0.3.3",
+    "isparta": "^3.0.3",
     "karma": "^0.12.31",
     "karma-babel-preprocessor": "^5.2.1",
-    "karma-browserify": "^4.0.0",
     "karma-chai": "^0.1.0",
-    "karma-chrome-launcher": "^0.1.7",
+    "karma-chrome-launcher": "^0.1.12",
     "karma-commonjs": "0.0.13",
     "karma-coverage": "^0.3.1",
     "karma-mocha": "^0.1.10",
     "karma-sauce-launcher": "^0.2.10",
     "karma-source-map-support": "^1.0.0",
-    "mocha": "^2.2.1",
-    "run-sequence": "^1.0.2"
+    "mocha": "^2.2.1"
   }
 }
