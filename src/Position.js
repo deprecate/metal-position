@@ -1,3 +1,5 @@
+'use strict';
+
 import core from 'bower:metal/src/core';
 import Geometry from './Geometry';
 

@@ -1,3 +1,5 @@
+'use strict';
+
 class Geometry {
   /**
      * Tests if a rectangle intersects with another.
