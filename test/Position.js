@@ -76,16 +76,16 @@ describe('Position', function() {
 		it('should get document scrollLeft and scrollTop', function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
-			document.body.scrollTop = 20;
-			document.body.scrollLeft = 30;
+			document.documentElement.scrollTop = 20;
+			document.documentElement.scrollLeft = 30;
 			nextScrollTick(function() {
 				assert.strictEqual(20, Position.getScrollTop(document));
 				assert.strictEqual(30, Position.getScrollLeft(document));
 				assert.strictEqual(20, Position.getScrollTop(window));
 				assert.strictEqual(30, Position.getScrollLeft(window));
 
-				document.body.scrollTop = 0;
-				document.body.scrollLeft = 0;
+				document.documentElement.scrollTop = 0;
+				document.documentElement.scrollLeft = 0;
 				nextScrollTick(done);
 			});
 		});
@@ -117,8 +117,8 @@ describe('Position', function() {
 		it('should get node region excluding the scroll position', function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
-			document.body.scrollTop = 20;
-			document.body.scrollLeft = 30;
+			document.documentElement.scrollTop = 20;
+			document.documentElement.scrollLeft = 30;
 
 			dom.once(document, 'scroll', function() {
 				var region = Position.getRegion(paddingElement);
@@ -134,16 +134,17 @@ describe('Position', function() {
 					document.body.style.width = '';
 					done();
 				});
-				document.body.scrollTop = 0;
-				document.body.scrollLeft = 0;
+				document.documentElement.scrollTop = 0;
+				document.documentElement.scrollLeft = 0;
 			});
 		});
 
 		it('should get node region including the scroll position', function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
-			document.body.scrollTop = 20;
-			document.body.scrollLeft = 30;
+			document.body.style.overflow = 'scroll';
+			document.documentElement.scrollTop = 20;
+			document.documentElement.scrollLeft = 30;
 
 			dom.once(document, 'scroll', function() {
 				var region = Position.getRegion(paddingElement, true);
@@ -159,8 +160,8 @@ describe('Position', function() {
 					document.body.style.width = '';
 					done();
 				});
-				document.body.scrollTop = 0;
-				document.body.scrollLeft = 0;
+				document.documentElement.scrollTop = 0;
+				document.documentElement.scrollLeft = 0;
 			});
 		});
 
