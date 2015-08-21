@@ -231,8 +231,8 @@ class Position {
 	 * @protected
 	 */
 	static makeRegionFromBoundingRect_(rect, opt_includeScroll) {
-		var deltaX = opt_includeScroll ? document.documentElement.scrollLeft : 0;
-		var deltaY = opt_includeScroll ? document.documentElement.scrollTop : 0;
+		var deltaX = opt_includeScroll ? Position.getScrollLeft(document) : 0;
+		var deltaY = opt_includeScroll ? Position.getScrollTop(document) : 0;
 		return this.makeRegion(
 			rect.bottom + deltaY,
 			rect.height,
