@@ -24,6 +24,10 @@ module.exports = function (config) {
 
     browsers: ['Chrome'],
 
+    client: {
+			useIframe: false
+    },
+
     babelPreprocessor: {options: babelOptions}
   });
 }

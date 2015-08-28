@@ -76,16 +76,16 @@ describe('Position', function() {
 		it('should get document scrollLeft and scrollTop', function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
-			window.scrollTo(30, 20);
 			nextScrollTick(function() {
 				assert.strictEqual(20, Position.getScrollTop(document));
 				assert.strictEqual(30, Position.getScrollLeft(document));
 				assert.strictEqual(20, Position.getScrollTop(window));
 				assert.strictEqual(30, Position.getScrollLeft(window));
 
-				window.scrollTo(0, 0);
 				nextScrollTick(done);
+				window.scrollTo(0, 0);
 			});
+			window.scrollTo(30, 20);
 		});
 	});
 
