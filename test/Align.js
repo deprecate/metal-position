@@ -3,6 +3,7 @@
 import dom from 'bower:metal/src/dom/dom';
 import Position from '../src/Position';
 import Align from '../src/Align';
+import PositionTestHelper from './fixture/PositionTestHelper';
 
 var element;
 var mutable;
@@ -103,16 +104,19 @@ describe('Align', function() {
 		assert.strictEqual('9983px', element.style.left);
 	});
 
-	it('should not compute pageYOffset when aligning element with position fixed', function() {
-		element.style.position = 'fixed';
-		mutable.style.position = 'relative';
-		mutable.style.top = '10000px';
-		mutable.style.left = '10000px';
-		window.scrollTo(5000, 5000);
-		Align.align(element, mutable, Align.Left);
-		assert.strictEqual('5020.5px', element.style.top);
-		assert.strictEqual('4983px', element.style.left);
-	});
+	it(
+		'should not compute pageYOffset when aligning element with position fixed',
+		PositionTestHelper.skipSafariMobile(function() {
+			element.style.position = 'fixed';
+			mutable.style.position = 'relative';
+			mutable.style.top = '10000px';
+			mutable.style.left = '10000px';
+			window.scrollTo(5000, 5000);
+			Align.align(element, mutable, Align.Left);
+			assert.strictEqual('5020.5px', element.style.top);
+			assert.strictEqual('4983px', element.style.left);
+		})
+	);
 
 	it('should align respecting parent offset', function() {
 		offsetParent.appendChild(element);

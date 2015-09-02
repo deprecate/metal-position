@@ -2,6 +2,7 @@
 
 import dom from 'bower:metal/src/dom/dom';
 import Position from '../src/Position';
+import PositionTestHelper from './fixture/PositionTestHelper';
 
 describe('Position', function() {
 	var paddingElement = dom.buildFragment('<div id="paddingElement" style="height:10000px;width:10000px;position:relative;overflow:auto;"><div style="position:absolute;top:20000px;left:20000px;height:10px;width:10px;"></div></div>').firstChild;
@@ -16,10 +17,10 @@ describe('Position', function() {
 	});
 
 	describe('viewport', function() {
-		it('should check window viewport size', function() {
+		it('should check window viewport size', PositionTestHelper.skipSafariMobile(function() {
 			assert.ok(window.document.documentElement.scrollHeight > Position.getClientHeight(window));
 			assert.ok(window.document.documentElement.scrollWidth > Position.getClientWidth(window));
-		});
+		}));
 
 		it('should client size of window be the same of window size', function() {
 			assert.strictEqual(Position.getClientHeight(window), Position.getHeight(window));
@@ -73,7 +74,7 @@ describe('Position', function() {
 			paddingElement.scrollLeft = 100;
 		});
 
-		it('should get document scrollLeft and scrollTop', function(done) {
+		it('should get document scrollLeft and scrollTop', PositionTestHelper.skipSafariMobile(function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
 			nextScrollTick(function() {
@@ -86,7 +87,7 @@ describe('Position', function() {
 				window.scrollTo(0, 0);
 			});
 			window.scrollTo(30, 20);
-		});
+		}));
 	});
 
 	describe('Region', function() {
@@ -112,7 +113,7 @@ describe('Position', function() {
 			assert.strictEqual(0, region.top);
 		});
 
-		it('should get node region excluding the scroll position', function(done) {
+		it('should get node region excluding the scroll position', PositionTestHelper.skipSafariMobile(function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
 			window.scrollTo(30, 20);
@@ -133,9 +134,9 @@ describe('Position', function() {
 				});
 				window.scrollTo(0, 0);
 			});
-		});
+		}));
 
-		it('should get node region including the scroll position', function(done) {
+		it('should get node region including the scroll position', PositionTestHelper.skipSafariMobile(function(done) {
 			document.body.style.height = '2000px';
 			document.body.style.width = '2000px';
 			document.body.style.overflow = 'scroll';
@@ -157,7 +158,7 @@ describe('Position', function() {
 				});
 				window.scrollTo(0, 0);
 			});
-		});
+		}));
 
 		it('should check if same region intersects', function() {
 			var r1 = {
