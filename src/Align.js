@@ -132,7 +132,7 @@ class Align {
 	 * Checks if specified value is a valid position. Options `Align.Top`,
 	 *     `Align.Right`, `Align.Bottom`, `Align.Left`.
 	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} val
-	 * @return {Boolean} Returns true if value is a valid position.
+	 * @return {boolean} Returns true if value is a valid position.
 	 * @static
 	 */
 	static isValidPosition(val) {
@@ -142,7 +142,7 @@ class Align {
 
 /**
  * Represents the `Align.Top` constant.
- * @type {Number}
+ * @type {number}
  * @default 0
  * @static
  */
@@ -150,7 +150,7 @@ Align.Top = 0;
 
 /**
  * Represents the `Align.Right` constant.
- * @type {Number}
+ * @type {number}
  * @default 1
  * @static
  */
@@ -158,7 +158,7 @@ Align.Right = 1;
 
 /**
  * Represents the `Align.Bottom` constant.
- * @type {Number}
+ * @type {number}
  * @default 2
  * @static
  */
@@ -166,7 +166,7 @@ Align.Bottom = 2;
 
 /**
  * Represents the `Align.Left` constant.
- * @type {Number}
+ * @type {number}
  * @default 3
  * @static
  */

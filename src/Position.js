@@ -11,7 +11,7 @@ class Position {
 	 * Gets the client height of the specified node. Scroll height is not
 	 * included.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getClientHeight(node) {
 		return this.getClientSize_(node, 'Height');
@@ -22,7 +22,7 @@ class Position {
 	 * not included.
 	 * @param {Element|Document|Window=} node
 	 * @param {string} `Width` or `Height` property.
-	 * @return {Number}
+	 * @return {number}
 	 * @protected
 	 */
 	static getClientSize_(node, prop) {
@@ -40,7 +40,7 @@ class Position {
 	 * Gets the client width of the specified node. Scroll width is not
 	 * included.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getClientWidth(node) {
 		return this.getClientSize_(node, 'Width');
@@ -63,7 +63,7 @@ class Position {
 	/**
 	 * Gets the height of the specified node. Scroll height is included.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getHeight(node) {
 		return this.getSize_(node, 'Height');
@@ -89,7 +89,7 @@ class Position {
 	/**
 	 * Gets the scroll left position of the specified node.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getScrollLeft(node) {
 		if (core.isWindow(node)) {
@@ -104,7 +104,7 @@ class Position {
 	/**
 	 * Gets the scroll top position of the specified node.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getScrollTop(node) {
 		if (core.isWindow(node)) {
@@ -121,7 +121,7 @@ class Position {
 	 * included.
 	 * @param {Element|Document|Window=} node
 	 * @param {string} `Width` or `Height` property.
-	 * @return {Number}
+	 * @return {number}
 	 * @protected
 	 */
 	static getSize_(node, prop) {
@@ -140,7 +140,7 @@ class Position {
 	/**
 	 * Gets the width of the specified node. Scroll width is included.
 	 * @param {Element|Document|Window=} node
-	 * @return {Number}
+	 * @return {number}
 	 */
 	static getWidth(node) {
 		return this.getSize_(node, 'Width');
@@ -198,12 +198,12 @@ class Position {
 
 	/**
 	 * Makes a region object. It's a writable version of DOMRect.
-	 * @param {Number} bottom
-	 * @param {Number} height
-	 * @param {Number} left
-	 * @param {Number} right
-	 * @param {Number} top
-	 * @param {Number} width
+	 * @param {number} bottom
+	 * @param {number} height
+	 * @param {number} left
+	 * @param {number} right
+	 * @param {number} top
+	 * @param {number} width
 	 * @return {!DOMRect} The returned value is a DOMRect object which is the
 	 *     union of the rectangles returned by getClientRects() for the element,
 	 *     i.e., the CSS border-boxes associated with the element.
