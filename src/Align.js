@@ -32,8 +32,8 @@ class Align {
 
 			var offsetParent = element;
 			while ((offsetParent = offsetParent.offsetParent)) {
-				bestRegion.top -= offsetParent.offsetTop;
-				bestRegion.left -= offsetParent.offsetLeft;
+				bestRegion.top -= Position.getOffsetTop(offsetParent);
+				bestRegion.left -= Position.getOffsetLeft(offsetParent);
 			}
 		}
 

@@ -126,6 +126,17 @@ describe('Align', function() {
 		assert.strictEqual('112.5px', element.style.left);
 	});
 
+	it('should align respecting parent offset with translate css', function() {
+		offsetParent.style['-webkit-transform'] = 'translate(-100px, -100px)';
+		offsetParent.style['-ms-transform'] = 'translate(-100px, -100px)';
+		offsetParent.style.transform = 'translate(-100px, -100px)';
+		offsetParent.appendChild(element);
+		offsetParent.appendChild(center);
+		Align.align(element, center, Align.Bottom);
+		assert.strictEqual('150px', element.style.top);
+		assert.strictEqual('112.5px', element.style.left);
+	});
+
 	it('should check if align position is valid', function() {
 		assert.ok(Align.isValidPosition(Align.Top));
 		assert.ok(Align.isValidPosition(Align.Right));
