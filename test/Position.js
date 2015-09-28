@@ -386,6 +386,52 @@ describe('Position', function() {
 			assert.ok(!Position.pointInsideRegion(101, 101, r));
 		});
 	});
+
+	describe('offsetTop/offsetLeft', function() {
+		var offsetElement;
+
+		beforeEach(function() {
+			dom.removeChildren(document.body);
+			offsetElement = dom.buildFragment('<div style="position:absolute;top:100px;left:200px;"></div>').firstChild;
+			dom.enterDocument(offsetElement);
+		});
+
+		afterEach(function() {
+			dom.exitDocument(offsetElement);
+		});
+
+		it('should return offset position of given element', function() {
+			assert.strictEqual(100, Position.getOffsetTop(offsetElement));
+			assert.strictEqual(200, Position.getOffsetLeft(offsetElement));
+		});
+
+		it('should return offset position of given element with translate css', function() {
+			offsetElement.style['-webkit-transform'] = 'translate(-30px, -50px)';
+			offsetElement.style['-ms-transform'] = 'translate(-30px, -50px)';
+			offsetElement.style.transform = 'translate(-30px, -50px)';
+			assert.strictEqual(50, Position.getOffsetTop(offsetElement));
+			assert.strictEqual(170, Position.getOffsetLeft(offsetElement));
+		});
+
+		it('should return offset position of given element with 3d translate css', function() {
+			offsetElement.style['-webkit-transform'] = 'translate3d(-30px, -50px, -10px)';
+			offsetElement.style['-ms-transform'] = 'translate3d(-30px, -50px, -10px)';
+			offsetElement.style.transform = 'translate3d(-30px, -50px, -10px)';
+			if (Position.getTransformMatrixValues(offsetElement)) {
+				// This test only makes sense on browsers that support 3d transforms.
+				assert.strictEqual(50, Position.getOffsetTop(offsetElement));
+				assert.strictEqual(170, Position.getOffsetLeft(offsetElement));
+			}
+		});
+
+		it('should return offset position of given element ignoring translate css', function() {
+			offsetElement.style['-webkit-transform'] = 'translate(-30px, -50px)';
+			offsetElement.style['-ms-transform'] = 'translate(-30px, -50px)';
+			offsetElement.style.transform = 'translate(-30px, -50px)';
+			assert.strictEqual(100, Position.getOffsetTop(offsetElement, true));
+			assert.strictEqual(200, Position.getOffsetLeft(offsetElement, true));
+		});
+	});
 });
 
 var nextScrollTick = function(fn, opt_el) {

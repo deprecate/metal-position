@@ -70,6 +70,34 @@ class Position {
 	}
 
 	/**
+	 * Gets the top offset position of the given node. This fixes the `offsetLeft` value of
+	 * nodes that were translated, which don't take that into account at all. That makes
+	 * the calculation more expensive though, so if you don't want that to be considered
+	 * either pass `opt_ignoreTransform` as true or call `offsetLeft` directly on the node.
+	 * @param {!Element} node
+	 * @param {boolean=} opt_ignoreTransform When set to true will ignore transform css
+	 *   when calculating the position. Defaults to false.
+	 * @return {number}
+	 */
+	static getOffsetLeft(node, opt_ignoreTransform) {
+		return node.offsetLeft + (opt_ignoreTransform ? 0 : Position.getTranslation(node).left);
+	}
+
+	/**
+	 * Gets the top offset position of the given node. This fixes the `offsetTop` value of
+	 * nodes that were translated, which don't take that into account at all. That makes
+	 * the calculation more expensive though, so if you don't want that to be considered
+	 * either pass `opt_ignoreTransform` as true or call `offsetTop` directly on the node.
+	 * @param {!Element} node
+	 * @param {boolean=} opt_ignoreTransform When set to true will ignore transform css
+	 *   when calculating the position. Defaults to false.
+	 * @return {number}
+	 */
+	static getOffsetTop(node, opt_ignoreTransform) {
+		return node.offsetTop + (opt_ignoreTransform ? 0 : Position.getTranslation(node).top);
+	}
+
+	/**
 	 * Gets the size of an element and its position relative to the viewport.
 	 * @param {!Document|Element|Window} node
 	 * @param {boolean=} opt_includeScroll Flag indicating if the document scroll
@@ -135,6 +163,45 @@ class Position {
 				node.body['offset' + prop], docEl['offset' + prop], docEl['client' + prop]);
 		}
 		return Math.max(node['client' + prop], node['scroll' + prop], node['offset' + prop]);
+	}
+
+	/**
+	 * Gets the transform matrix values for the given node.
+	 * @param {!Element} node
+	 * @return {Array<number>}
+	 */
+	static getTransformMatrixValues(node) {
+		var style = getComputedStyle(node);
+		var transform = style.msTransform || style.transform || style.webkitTransform || style.mozTransform;
+		if (transform !== 'none') {
+			var values = [];
+			var regex = /([\d-\.\s]+)/g;
+			var matches = regex.exec(transform);
+			while (matches) {
+				values.push(matches[1]);
+				matches = regex.exec(transform);
+			}
+			return values;
+		}
+	}
+
+	/**
+	 * Gets the number of translated pixels for the given node, for both the top and
+	 * left positions.
+	 * @param {!Element} node
+	 * @return {number}
+	 */
+	static getTranslation(node) {
+		var values = Position.getTransformMatrixValues(node);
+		var translation = {
+			left: 0,
+			top: 0
+		};
+		if (values) {
+			translation.left = parseFloat(values.length === 6 ? values[4] : values[13]);
+			translation.top = parseFloat(values.length === 6 ? values[5] : values[14]);
+		}
+		return translation;
 	}
 
 	/**
