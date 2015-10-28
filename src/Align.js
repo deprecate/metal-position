@@ -20,10 +20,12 @@ class Align {
 	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} pos
 	 *     The initial position to try. Options `Align.Top`, `Align.Right`,
 	 *     `Align.Bottom`, `Align.Left`.
+	 * @return {string} The final chosen position for the aligned element.
 	 * @static
 	 */
 	static align(element, alignElement, position) {
-		var bestRegion = this.getAlignBestRegion(element, alignElement, position);
+		var suggestion = this.suggestAlignBestRegion(element, alignElement, position);
+		var bestRegion = suggestion.region;
 
 		var computedStyle = window.getComputedStyle(element, null);
 		if (computedStyle.getPropertyValue('position') !== 'fixed') {
@@ -39,13 +41,13 @@ class Align {
 
 		element.style.top = bestRegion.top + 'px';
 		element.style.left = bestRegion.left + 'px';
+		return suggestion.position;
 	}
 
 	/**
-	 * Returns the best region to align element with alignElement. The best
-	 * region is defined by clockwise rotation starting from the specified
-	 * `position`. The element is always aligned in the middle of alignElement
-	 * axis.
+	 * Returns the best region to align element with alignElement. This is similar
+	 * to `Align.suggestAlignBestRegion`, but it only returns the region information,
+	 * while `Align.suggestAlignBestRegion` also returns the chosen position.
 	 * @param {!Element} element Element to be aligned.
 	 * @param {!Element} alignElement Element to align with.
 	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} pos
@@ -55,31 +57,7 @@ class Align {
 	 * @static
 	 */
 	static getAlignBestRegion(element, alignElement, position) {
-		var bestArea = 0;
-		var bestPosition = position;
-		var bestRegion = this.getAlignRegion(element, alignElement, bestPosition);
-		var tryPosition = bestPosition;
-		var tryRegion = bestRegion;
-		var viewportRegion = Position.getRegion(window);
-
-		for (var i = 0; i < 4;) {
-			if (Position.intersectRegion(viewportRegion, tryRegion)) {
-				var visibleRegion = Position.intersection(viewportRegion, tryRegion);
-				var area = visibleRegion.width * visibleRegion.height;
-				if (area > bestArea) {
-					bestArea = area;
-					bestRegion = tryRegion;
-					bestPosition = tryPosition;
-				}
-				if (Position.insideViewport(tryRegion)) {
-					break;
-				}
-			}
-			tryPosition = (position + (++i)) % 4;
-			tryRegion = this.getAlignRegion(element, alignElement, tryPosition);
-		}
-
-		return bestRegion;
+		return Align.suggestAlignBestRegion(element, alignElement, position).region;
 	}
 
 	/**
@@ -137,6 +115,50 @@ class Align {
 	 */
 	static isValidPosition(val) {
 		return 0 <= val && val <= 3;
+	}
+
+	/**
+	 * Looks for the best region for aligning the given element. The best
+	 * region is defined by clockwise rotation starting from the specified
+	 * `position`. The element is always aligned in the middle of alignElement
+	 * axis.
+	 * @param {!Element} element Element to be aligned.
+	 * @param {!Element} alignElement Element to align with.
+	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} pos
+	 *     The initial position to try. Options `Align.Top`, `Align.Right`,
+	 *     `Align.Bottom`, `Align.Left`.
+	 * @return {{position: string, region: DOMRect}} Best region to align element.
+	 * @static
+	 */
+	static suggestAlignBestRegion(element, alignElement, position) {
+		var bestArea = 0;
+		var bestPosition = position;
+		var bestRegion = this.getAlignRegion(element, alignElement, bestPosition);
+		var tryPosition = bestPosition;
+		var tryRegion = bestRegion;
+		var viewportRegion = Position.getRegion(window);
+
+		for (var i = 0; i < 4;) {
+			if (Position.intersectRegion(viewportRegion, tryRegion)) {
+				var visibleRegion = Position.intersection(viewportRegion, tryRegion);
+				var area = visibleRegion.width * visibleRegion.height;
+				if (area > bestArea) {
+					bestArea = area;
+					bestRegion = tryRegion;
+					bestPosition = tryPosition;
+				}
+				if (Position.insideViewport(tryRegion)) {
+					break;
+				}
+			}
+			tryPosition = (position + (++i)) % 4;
+			tryRegion = this.getAlignRegion(element, alignElement, tryPosition);
+		}
+
+		return {
+			position: bestPosition,
+			region: bestRegion
+		};
 	}
 }
 

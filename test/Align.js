@@ -36,41 +36,47 @@ describe('Align', function() {
 	});
 
 	it('should align at bottom', function() {
-		Align.align(element, center, Align.Bottom);
+		var position = Align.align(element, center, Align.Bottom);
+		assert.strictEqual(Align.Bottom, position);
 		assert.strictEqual('150px', element.style.top);
 		assert.strictEqual('112.5px', element.style.left);
 	});
 
 	it('should align at right', function() {
-		Align.align(element, center, Align.Right);
+		var position = Align.align(element, center, Align.Right);
+		assert.strictEqual(Align.Right, position);
 		assert.strictEqual('112.5px', element.style.top);
 		assert.strictEqual('150px', element.style.left);
 	});
 
 	it('should align at top', function() {
-		Align.align(element, center, Align.Top);
+		var position = Align.align(element, center, Align.Top);
+		assert.strictEqual(Align.Top, position);
 		assert.strictEqual('75px', element.style.top);
 		assert.strictEqual('112.5px', element.style.left);
 	});
 
 	it('should align at left', function() {
-		Align.align(element, center, Align.Left);
+		var position = Align.align(element, center, Align.Left);
+		assert.strictEqual(Align.Left, position);
 		assert.strictEqual('112.5px', element.style.top);
 		assert.strictEqual('75px', element.style.left);
 	});
 
 	it('should try to align at top then move right', function() {
 		mutable.style.top = 0;
-		Align.align(element, mutable, Align.Top);
+		var position = Align.align(element, mutable, Align.Top);
+		assert.strictEqual(Align.Right, position);
 		assert.strictEqual('12.5px', element.style.top);
 		assert.strictEqual('150px', element.style.left);
 	});
 
 	it('should try to align at right then move bottom', function() {
 		mutable.style.left = (Position.getRegion(window).right - 50) + 'px';
-		Align.align(element, mutable, Align.Right);
+		var position = Align.align(element, mutable, Align.Right);
 		var mutableRegion = Position.getRegion(mutable);
 		var elementRegion = Position.getRegion(element);
+		assert.strictEqual(Align.Bottom, position);
 		assert.strictEqual('150px', element.style.top);
 		assert.strictEqual((mutableRegion.left + mutableRegion.width / 2 - elementRegion.width / 2) + 'px', element.style.left);
 	});
@@ -78,9 +84,10 @@ describe('Align', function() {
 	it('should try to align at bottom then move left', function() {
 		mutable.style.bottom = Position.getRegion(window).bottom + 'px';
 		mutable.style.top = (Position.getRegion(window).bottom - 50) + 'px';
-		Align.align(element, mutable, Align.Bottom);
+		var position = Align.align(element, mutable, Align.Bottom);
 		var mutableRegion = Position.getRegion(mutable);
 		var elementRegion = Position.getRegion(element);
+		assert.strictEqual(Align.Left, position);
 		assert.strictEqual((mutableRegion.top + mutableRegion.height / 2 - elementRegion.height / 2) + 'px', element.style.top);
 		assert.strictEqual((mutableRegion.left - elementRegion.width) + 'px', element.style.left);
 	});
@@ -88,9 +95,18 @@ describe('Align', function() {
 	it('should try to align at left then move top', function() {
 		mutable.style.top = '100px';
 		mutable.style.left = 0;
-		Align.align(element, mutable, Align.Left);
+		var position = Align.align(element, mutable, Align.Left);
+		assert.strictEqual(Align.Top, position);
 		assert.strictEqual('75px', element.style.top);
 		assert.strictEqual('12.5px', element.style.left);
+	});
+
+	it('should get best region to align', function() {
+		mutable.style.top = '100px';
+		mutable.style.left = 0;
+		var region = Align.getAlignBestRegion(element, mutable, Align.Left);
+		assert.strictEqual(75, region.top);
+		assert.strictEqual(12.5, region.left);
 	});
 
 	it('should compute pageYOffset when aligning element with position absolute', function() {
