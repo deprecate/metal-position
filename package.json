@@ -2,16 +2,21 @@
 	"name": "metal-position",
 	"version": "0.0.4",
 	"description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
+	"license": "BSD",
+	"repository": "metal/metal-position",
+	"author": {
+    "name": "Eduardo Lundgren",
+    "email": "edu@rdo.io"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
 	"scripts": {
 		"test": "gulp test"
 	},
 	"keywords": [
 		"metal"
 	],
-	"repository": {
-		"type": "git",
-		"url": "http://github.com/metal/metal-position.git"
-	},
 	"devDependencies": {
 		"gulp": "^3.8.11",
 		"gulp-metal": "^0.7.0"
