@@ -78,21 +78,37 @@ class Align {
 		var left = 0;
 
 		switch (position) {
-			case Align.Top:
+			case Align.TopCenter:
 				top = r1.top - r2.height;
 				left = r1.left + r1.width / 2 - r2.width / 2;
 				break;
-			case Align.Right:
+			case Align.RightCenter:
 				top = r1.top + r1.height / 2 - r2.height / 2;
 				left = r1.left + r1.width;
 				break;
-			case Align.Bottom:
+			case Align.BottomCenter:
 				top = r1.bottom;
 				left = r1.left + r1.width / 2 - r2.width / 2;
 				break;
-			case Align.Left:
+			case Align.LeftCenter:
 				top = r1.top + r1.height / 2 - r2.height / 2;
 				left = r1.left - r2.width;
+				break;
+			case Align.TopRight:
+				top = r1.top - r2.height;
+				left = r1.right - r2.width;
+				break;
+			case Align.BottomRight:
+				top = r1.bottom;
+				left = r1.right - r2.width;
+				break;
+			case Align.BottomLeft:
+				top = r1.bottom;
+				left = r1.left;
+				break;
+			case Align.TopLeft:
+				top = r1.top - r2.height;
+				left = r1.left;
 				break;
 		}
 
@@ -114,7 +130,7 @@ class Align {
 	 * @static
 	 */
 	static isValidPosition(val) {
-		return 0 <= val && val <= 3;
+		return 0 <= val && val <= 8;
 	}
 
 	/**
@@ -138,7 +154,7 @@ class Align {
 		var tryRegion = bestRegion;
 		var viewportRegion = Position.getRegion(window);
 
-		for (var i = 0; i < 4;) {
+		for (var i = 0; i < 8;) {
 			if (Position.intersectRegion(viewportRegion, tryRegion)) {
 				var visibleRegion = Position.intersection(viewportRegion, tryRegion);
 				var area = visibleRegion.width * visibleRegion.height;
@@ -151,7 +167,7 @@ class Align {
 					break;
 				}
 			}
-			tryPosition = (position + (++i)) % 4;
+			tryPosition = (position + (++i)) % 8;
 			tryRegion = this.getAlignRegion(element, alignElement, tryPosition);
 		}
 
@@ -163,35 +179,28 @@ class Align {
 }
 
 /**
- * Represents the `Align.Top` constant.
+ * Constants that represent the supported positions for `Align`.
  * @type {number}
- * @default 0
  * @static
  */
-Align.Top = 0;
+
+Align.TopCenter = 0;
+Align.TopRight = 1;
+Align.RightCenter = 2;
+Align.BottomRight = 3;
+Align.BottomCenter = 4;
+Align.BottomLeft = 5;
+Align.LeftCenter = 6;
+Align.TopLeft = 7;
 
 /**
- * Represents the `Align.Right` constant.
+ * Aliases for position constants.
  * @type {number}
- * @default 1
  * @static
  */
-Align.Right = 1;
-
-/**
- * Represents the `Align.Bottom` constant.
- * @type {number}
- * @default 2
- * @static
- */
-Align.Bottom = 2;
-
-/**
- * Represents the `Align.Left` constant.
- * @type {number}
- * @default 3
- * @static
- */
-Align.Left = 3;
+Align.Top = Align.TopCenter;
+Align.Right = Align.RightCenter;
+Align.Bottom = Align.BottomCenter;
+Align.Left = Align.LeftCenter;
 
 export default Align;

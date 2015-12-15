@@ -71,14 +71,14 @@ describe('Align', function() {
 		assert.strictEqual('150px', element.style.left);
 	});
 
-	it('should try to align at right then move bottom', function() {
+	it('should try to align at right then move to bottom right', function() {
 		mutable.style.left = (Position.getRegion(window).right - 50) + 'px';
 		var position = Align.align(element, mutable, Align.Right);
 		var mutableRegion = Position.getRegion(mutable);
 		var elementRegion = Position.getRegion(element);
-		assert.strictEqual(Align.Bottom, position);
+		assert.strictEqual(Align.BottomRight, position);
 		assert.strictEqual('150px', element.style.top);
-		assert.strictEqual((mutableRegion.left + mutableRegion.width / 2 - elementRegion.width / 2) + 'px', element.style.left);
+		assert.strictEqual((mutableRegion.right - elementRegion.width) + 'px', element.style.left);
 	});
 
 	it('should try to align at bottom then move left', function() {
@@ -96,9 +96,9 @@ describe('Align', function() {
 		mutable.style.top = '100px';
 		mutable.style.left = 0;
 		var position = Align.align(element, mutable, Align.Left);
-		assert.strictEqual(Align.Top, position);
+		assert.strictEqual(Align.TopLeft, position);
 		assert.strictEqual('75px', element.style.top);
-		assert.strictEqual('12.5px', element.style.left);
+		assert.strictEqual('0px', element.style.left);
 	});
 
 	it('should get best region to align', function() {
@@ -106,7 +106,7 @@ describe('Align', function() {
 		mutable.style.left = 0;
 		var region = Align.getAlignBestRegion(element, mutable, Align.Left);
 		assert.strictEqual(75, region.top);
-		assert.strictEqual(12.5, region.left);
+		assert.strictEqual(0, region.left);
 	});
 
 	it('should compute pageYOffset when aligning element with position absolute', function() {
@@ -159,7 +159,16 @@ describe('Align', function() {
 		assert.ok(Align.isValidPosition(Align.Bottom));
 		assert.ok(Align.isValidPosition(Align.Left));
 
+		assert.ok(Align.isValidPosition(Align.TopCenter));
+		assert.ok(Align.isValidPosition(Align.TopRight));
+		assert.ok(Align.isValidPosition(Align.RightCenter));
+		assert.ok(Align.isValidPosition(Align.BottomRight));
+		assert.ok(Align.isValidPosition(Align.BottomCenter));
+		assert.ok(Align.isValidPosition(Align.BottomLeft));
+		assert.ok(Align.isValidPosition(Align.LeftCenter));
+		assert.ok(Align.isValidPosition(Align.TopLeft));
+
 		assert.ok(!Align.isValidPosition(-1));
-		assert.ok(!Align.isValidPosition(4));
+		assert.ok(!Align.isValidPosition(10));
 	});
 });
