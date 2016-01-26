@@ -11,6 +11,10 @@
   "engines": {
     "node": ">=0.12.0"
   },
+  "files": [
+    "src/**/*.js",
+    "test/**/*.js"
+  ],
 	"scripts": {
 		"test": "gulp test"
 	},
