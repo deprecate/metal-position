@@ -6,8 +6,8 @@
 
 ## Install
 
-1. Install [Bower](http://bower.io/), if you don't have it yet.
-2. Run `bower install metal-position`. The code will be available at `bower_components/metal-position`.
+1. Install [NPM](http://npmjs.com/), if you don't have it yet.
+2. Run `npm install metal-position`. The code will be available at `node_modules/metal-position`.
 
 
 ## Getting Started
@@ -15,7 +15,7 @@
 With the code already available, you can use Metal Position by just importing the desired module on your js file and calling what you wish on it. For example:
 
 ```js
-import position from 'bower_components/metal-position/src/position';
+import position from 'node_modules/metal-position/src/position';
 
 // You can now call any function from Metal's Position module.
 position.getClientHeight();
