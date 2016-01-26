@@ -10,8 +10,5 @@
     "*",
     "!test/**/*",
     "!src/**/*"
-  ],
-  "dependencies": {
-    "metal": "metal/metal.js#master"
-  }
+  ]
 }

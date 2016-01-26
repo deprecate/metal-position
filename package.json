@@ -17,8 +17,12 @@
 	"keywords": [
 		"metal"
 	],
+	"dependencies": {
+		"closure-templates": "20140422.0.0",
+		"metal": "metal/metal.js#master"
+	},
 	"devDependencies": {
 		"gulp": "^3.8.11",
-		"gulp-metal": "^0.7.0"
+		"gulp-metal": "^0.9.0"
 	}
 }
