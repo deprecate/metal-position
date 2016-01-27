@@ -1,6 +1,6 @@
 'use strict';
 
-import core from 'npm:metal/src/core';
+import core from 'metal/src/core';
 import Geometry from './Geometry';
 
 /**
