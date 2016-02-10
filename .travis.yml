@@ -4,6 +4,8 @@ node_js:
 addons:
   sauce_connect: true
 script: gulp test:saucelabs
+before_install:
+  - npm install -g npm@'>=3.0.0'
 env:
   global:
   - secure: uQD+zb7GPdXlVPzWCSL92ukIPH+osqmxM1/UsF+eCQ4vQX+mG3gwexrX8gs62zQ4Klqt9vMT3RMzgx7vo78ehR7RVHdJjFhHfCeGFYtO79YQbhZdsrIUYpitg/hEe809tKPjlv1MvQz9QHnBggCEknXUr1QeYPn1KS8lJDYzYw4=
