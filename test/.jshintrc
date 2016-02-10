@@ -4,5 +4,5 @@
 		"soy": true
 	},
 	"mocha": true,
-	"extends": "../../.jshintrc"
+	"extends": "../.jshintrc"
 }
