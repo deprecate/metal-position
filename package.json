@@ -23,11 +23,11 @@
 		"metal"
 	],
 	"dependencies": {
-		"metal": "^1.0.0-rc",
-		"metal-dom": "^1.0.0-rc"
+		"metal": "^1.0.0-rc.1",
+		"metal-dom": "^1.0.0-rc.2"
 	},
 	"devDependencies": {
 		"gulp": "^3.8.11",
-		"gulp-metal": "^0.14.0"
+		"gulp-metal": "^1.0.0"
 	}
 }
