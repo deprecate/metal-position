@@ -1,39 +1,39 @@
 {
-	"name": "metal-position",
-	"version": "1.0.0-rc.3",
-	"description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
-	"license": "BSD",
-	"repository": "metal/metal-position",
-	"author": {
+  "name": "metal-position",
+  "version": "1.0.0",
+  "description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
+  "license": "BSD",
+  "repository": "metal/metal-position",
+  "author": {
     "name": "Eduardo Lundgren",
     "email": "edu@rdo.io"
   },
   "engines": {
     "node": ">=0.12.0"
   },
-	"jsnext:main": "src/all/position.js",
-	"main": "lib/all/position.js",
+  "jsnext:main": "src/all/position.js",
+  "main": "lib/all/position.js",
   "files": [
-		"lib",
+    "lib",
     "src/**/*.js",
     "test/**/*.js"
   ],
-	"scripts": {
-		"compile": "babel --presets metal -d lib/ src/",
-		"prepublish": "npm run compile",
-		"test": "gulp test"
-	},
-	"keywords": [
-		"metal"
-	],
-	"dependencies": {
-		"metal": "^1.0.0",
-		"metal-dom": "^1.0.0"
-	},
-	"devDependencies": {
-		"babel-cli": "^6.4.5",
-		"babel-preset-metal": "^4.0.0",
-		"gulp": "^3.8.11",
-		"gulp-metal": "^1.0.0"
-	}
+  "scripts": {
+    "compile": "babel --presets metal -d lib/ src/",
+    "prepublish": "npm run compile",
+    "test": "gulp test"
+  },
+  "keywords": [
+    "metal"
+  ],
+  "dependencies": {
+    "metal": "^1.0.0",
+    "metal-dom": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-metal": "^4.0.0",
+    "gulp": "^3.8.11",
+    "gulp-metal": "^1.0.0"
+  }
 }
