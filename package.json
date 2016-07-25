@@ -1,6 +1,6 @@
 {
   "name": "metal-position",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Metal.js position helps you to best position a DOM element into the screen. Useful to build tooltips, dropdowns an much more.",
   "license": "BSD",
   "repository": "metal/metal-position",
