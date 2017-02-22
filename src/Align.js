@@ -20,12 +20,21 @@ class Align {
 	 * @param {Align.Top|Align.Right|Align.Bottom|Align.Left} pos
 	 *     The initial position to try. Options `Align.Top`, `Align.Right`,
 	 *     `Align.Bottom`, `Align.Left`.
+	 * @param {boolean} autoBestAlign Option to suggest or not the best region
+	 *      to align.
 	 * @return {string} The final chosen position for the aligned element.
 	 * @static
 	 */
-	static align(element, alignElement, position) {
-		var suggestion = this.suggestAlignBestRegion(element, alignElement, position);
-		var bestRegion = suggestion.region;
+	static align(element, alignElement, position, autoBestAlign = true) {
+		var bestRegion;
+
+		if (autoBestAlign) {
+			var suggestion = this.suggestAlignBestRegion(element, alignElement, position);
+			position = suggestion.position;
+			bestRegion = suggestion.region;
+		} else {
+			bestRegion = this.getAlignRegion(element, alignElement, position);
+		}
 
 		var computedStyle = window.getComputedStyle(element, null);
 		if (computedStyle.getPropertyValue('position') !== 'fixed') {
@@ -41,7 +50,7 @@ class Align {
 
 		element.style.top = bestRegion.top + 'px';
 		element.style.left = bestRegion.left + 'px';
-		return suggestion.position;
+		return position;
 	}
 
 	/**

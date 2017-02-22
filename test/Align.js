@@ -42,6 +42,14 @@ describe('Align', function() {
 		assert.strictEqual('112.5px', element.style.left);
 	});
 
+	it('should not try to find a better region to align', function() {
+		mutable.style.left = '0px';
+		var position = Align.align(element, mutable, Align.Left, false);
+		assert.strictEqual(Align.Left, position);
+		assert.strictEqual('112.5px', element.style.top);
+		assert.strictEqual('-25px', element.style.left);
+	});
+
 	it('should align at right', function() {
 		var position = Align.align(element, center, Align.Right);
 		assert.strictEqual(Align.Right, position);
